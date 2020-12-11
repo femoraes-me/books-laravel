@@ -35,4 +35,12 @@ class BookController extends Controller
 
         return redirect()->route('books.index');
     }
+
+    //função para alteração de cadastro de livro
+    public function edit($id)
+    {
+        $book = Book::find($id);
+
+        return view('books.edit', compact('book'));
+    }
 }
