@@ -6,8 +6,9 @@
     <title>Livros | Editar</title>
 </head>
 <body>
-    <form action="<?php echo e(route('books.store')); ?>" method="POST">
+    <form action="<?php echo e(route('books.update', $book->id)); ?>" method="POST">
         <?php echo csrf_field(); ?> <!-- Atalho para inserir token do laravel -->
+        <?php echo method_field('PUT'); ?> <!-- Informando oculto no HTML método PUT de rota -->
         <label>Nome</label>
         <input type="text" name="name" value="<?php echo e($book->name); ?>"></input>
         <br>
@@ -16,12 +17,12 @@
         <br>
         <label>Categoria</label>
         <select name="category">
-            <option>Vida Cristã</option>
-            <option>Infantil</option>
-            <option>Educação</option>
+            <option <?php echo e($book->category == 'Vida Cristã' ? 'selected' : ''); ?>>Vida Cristã</option>
+            <option <?php echo e($book->category == 'Infantil' ? 'selected' : ''); ?>>Infantil</option>
+            <option <?php echo e($book->category == 'Educação' ? 'selected' : ''); ?>>Educação</option>
         </select>
         <br>
-        <button type="submit">ENVIAR</button>
+        <button type="submit">ALTERAR</button>
     </form>
 </body>
 </html><?php /**PATH C:\xampp\htdocs\books-laravel\resources\views/books/edit.blade.php ENDPATH**/ ?>

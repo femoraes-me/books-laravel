@@ -11,6 +11,7 @@
             <th>Nome</th>
             <th>Autor</th>
             <th>Categoria</th>
+            <th colspan="100%">Ações</th>
         </thead>
         <tbody>
             @foreach($books as $book)
@@ -18,6 +19,16 @@
                     <td>{{ $book->name }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->category }}</td>
+                    <td>
+                        <a href="{{ route('books.edit', $book->id) }}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

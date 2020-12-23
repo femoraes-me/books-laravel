@@ -6,8 +6,9 @@
     <title>Livros | Editar</title>
 </head>
 <body>
-    <form action="{{ route('books.store') }}" method="POST">
+    <form action="{{ route('books.update', $book->id) }}" method="POST">
         @csrf <!-- Atalho para inserir token do laravel -->
+        @method('PUT') <!-- Informando oculto no HTML método PUT de rota -->
         <label>Nome</label>
         <input type="text" name="name" value="{{ $book->name }}"></input>
         <br>
@@ -16,12 +17,12 @@
         <br>
         <label>Categoria</label>
         <select name="category">
-            <option>Vida Cristã</option>
-            <option>Infantil</option>
-            <option>Educação</option>
+            <option {{ $book->category == 'Vida Cristã' ? 'selected' : '' }}>Vida Cristã</option>
+            <option {{ $book->category == 'Infantil' ? 'selected' : '' }}>Infantil</option>
+            <option {{ $book->category == 'Educação' ? 'selected' : '' }}>Educação</option>
         </select>
         <br>
-        <button type="submit">ENVIAR</button>
+        <button type="submit">ALTERAR</button>
     </form>
 </body>
 </html>

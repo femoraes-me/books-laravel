@@ -39,8 +39,31 @@ class BookController extends Controller
     //função para alteração de cadastro de livro
     public function edit($id)
     {
-        $book = Book::find($id);
+        $book = Book::findOrFail($id);
 
         return view('books.edit', compact('book'));
+    }
+
+    //função para alteração de livros
+    public function update(Request $request, $id)
+    {
+        $book = Book::findOrFail($id); //encontrando livro pelo id
+
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->category = $request->category;
+
+        $book->save();
+
+        return redirect()->route('books.index');
+    }
+
+    //função para deleção de livros
+    public function destroy($id) 
+    {
+        $book = Book::findOrFail($id); //encontrando livro pelo id   
+        $book->delete();
+
+        return redirect()->route('books.index');
     }
 }
