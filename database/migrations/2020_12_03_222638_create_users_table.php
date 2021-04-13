@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToBooksTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddDeletedAtToBooksTable extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->softDeletes(); //criar campo para marcar como deletado
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('role');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AddDeletedAtToBooksTable extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('users');
     }
 }

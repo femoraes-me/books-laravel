@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; //classe para aceitar o Soft Delete
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model
 {
-    //protected $table = 'books';
-
     use SoftDeletes;
+
+    //protected $table = 'books';
+    protected $fillable = [
+        'name',
+        'author',
+        'category'
+    ];
 }
